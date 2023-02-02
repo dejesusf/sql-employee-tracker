@@ -1,6 +1,8 @@
-const inquirer= require('inquirier');
+//required packages
+const inquirer= require('inquirer');
 const mysql= require('mysql2');
 
+//connect to mysql2
 const db= mysql.createConnection (
   {
     host: '127.0.0.1',
@@ -12,16 +14,26 @@ const db= mysql.createConnection (
   console.log(`Connected to the employee database.`)
 );
 
+//function to add a department
 function addDepartment() {
   inquirer.prompt ([
     {
       type: 'input',
-      name: 'department',
+      name: 'dept',
       message: 'What is the name of the department?'
     }
-  ])
+  ]).then((response) => {
+    db.query(`INSERT INTO department(name) VALUES(?);`, response.dept, (err, results) => {
+      if (err) {
+        throw err 
+      }
+      console.table(results)
+      menu();
+    })
+  })
 };
 
+//function to add a role
 function addRole() {
   inquirer.prompt ([
     {
@@ -36,12 +48,21 @@ function addRole() {
     },
     {
       type: 'number',
-      name: 'deptRole',
+      name: 'deptId',
       message: 'Which department ID does this role belong to?'
     }
-  ])
+  ]).then((response) => {
+    db.query(`INSERT INTO role(title,salary,department_id) VALUES(?, ?, ?);`, [response.role, response.salary, response.deptId], (err, results) => {
+      if (err) {
+        throw err 
+      }
+      console.table(results)
+      menu();
+    })
+  })
 };
 
+//function to add an employee
 function addEmployee() {
   inquirer.prompt ([
     {
@@ -67,10 +88,12 @@ function addEmployee() {
   ])
 };
 
+//function to update an emploee's role
 function updateEmpRole() {
   
 };
 
+//function for the main menu
 function menu() {
   inquirer.prompt (
     [{
@@ -123,4 +146,5 @@ function menu() {
   })
 }
 
+//init
 menu();
