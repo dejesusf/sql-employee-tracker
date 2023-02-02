@@ -13,15 +13,58 @@ const db= mysql.createConnection (
 );
 
 function addDepartment() {
-
+  inquirer.prompt ([
+    {
+      type: 'input',
+      name: 'department',
+      message: 'What is the name of the department?'
+    }
+  ])
 };
 
 function addRole() {
-
+  inquirer.prompt ([
+    {
+      type: 'input',
+      name: 'role',
+      message: 'What is the name of the role?'
+    },
+    {
+      type: 'number',
+      name: 'salary',
+      message: 'What is the salary of the role?'
+    },
+    {
+      type: 'number',
+      name: 'deptRole',
+      message: 'Which department ID does this role belong to?'
+    }
+  ])
 };
 
 function addEmployee() {
-
+  inquirer.prompt ([
+    {
+      type: 'input',
+      name: 'firstName',
+      message: "What is the employee's first name?"
+    },
+    {
+      type: 'input',
+      name: 'lastName',
+      message: "What is the employee's last name?"
+    },
+    {
+      type: 'input',
+      name: 'empRole',
+      message: "What is the employee's role?"
+    },
+    {
+      type: 'input',
+      name: 'empManager',
+      message: "Who is the employee's manager?"
+    }
+  ])
 };
 
 function updateEmpRole() {
