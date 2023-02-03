@@ -58,7 +58,6 @@ function addRole() {
         throw err 
       }
       console.log(`Added ${response.role} to database.`)
-      roles.push(role)
       menu();
     })
   })
@@ -93,7 +92,6 @@ function addEmployee() {
         throw err 
       }
       console.log(`Added ${response.firstName} ${response.lastName} to database.`)
-      employees.push(firstName)
       menu();
     })
   })
