@@ -22,16 +22,16 @@ function addDepartment() {
       name: 'dept',
       message: 'What is the name of the department?'
     }
-  ]).then((response) => {
+  ]).then((response => {
     db.query(`INSERT INTO department(name) VALUES(?);`, response.dept, (err, results) => {
       if (err) {
-        throw err 
+        throw err
       }
-      console.table(results)
+      console.log(`Added department to database.`)
       menu();
     })
   })
-};
+)};
 
 //function to add a role
 function addRole() {
@@ -56,7 +56,7 @@ function addRole() {
       if (err) {
         throw err 
       }
-      console.table(results)
+      console.log(`Added ${response.role} to database.`)
       menu();
     })
   })
@@ -85,10 +85,18 @@ function addEmployee() {
       name: 'empManager',
       message: "Who is the employee's manager?"
     }
-  ])
+  ]).then((response) => {
+    db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?);`, [response.firstName, response.lastName, response.empRole, response.empManager], (err, results) => {
+      if (err) {
+        throw err 
+      }
+      console.log(`Added ${response.firstName} ${response.lastName} to database.`)
+      menu();
+    })
+  })
 };
 
-//function to update an emploee's role
+//function to update an employee's role
 function updateEmpRole() {
   
 };
@@ -114,7 +122,7 @@ function menu() {
         });
         break;
       case 'View all roles':
-        db.query(``, (err, results) => {
+        db.query(`SELECT role.title, department.name AS department, role.salary FROM department JOIN role ON role.department_id= department.id;`, (err, results) => {
           if (err) {
             throw err
           };
@@ -123,7 +131,7 @@ function menu() {
         });
         break;
         case 'View all employees':
-          db.query(``, (err, results) => {
+          db.query(`SELECT employee.role_id, employee.first_name, employee.last_name, role.title, role.department_id, role.salary, employee.manager_id AS manager FROM role JOIN employee ON employee.role_id= role.id;`, (err, results) => {
             if (err) {
               throw err
             };
