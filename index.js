@@ -79,12 +79,12 @@ function addEmployee() {
     {
       type: 'input',
       name: 'empRole',
-      message: "What is the employee's role?"
+      message: "Enter role ID?"
     },
     {
       type: 'input',
       name: 'empManager',
-      message: "Who is the employee's manager?"
+      message: "Who is the employee's manager (enter manager ID)?"
     }
   ]).then((response) => {
     db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?);`, [response.firstName, response.lastName, response.empRole, response.empManager], (err, results) => {
