@@ -5,7 +5,7 @@ SELECT * FROM role;
 SELECT * FROM employee;
 
 -- view all roles (job title, role_id, department, salary) --
-SELECT role.title, department.name AS department, role.salary
+SELECT role.id, role.title, department.name AS department, role.salary
 FROM department
 JOIN role
 ON role.department_id= department.id;

@@ -77,12 +77,12 @@ function addEmployee() {
       message: "What is the employee's last name?"
     },
     {
-      type: 'input',
+      type: 'number',
       name: 'empRole',
       message: "Enter role ID?"
     },
     {
-      type: 'input',
+      type: 'number',
       name: 'empManager',
       message: "Who is the employee's manager (enter manager ID)?"
     }
@@ -142,7 +142,7 @@ function menu() {
         });
         break;
       case 'View all roles':
-        db.query(`SELECT role.title, department.name AS department, role.salary FROM department JOIN role ON role.department_id= department.id;`, (err, results) => {
+        db.query(`SELECT role.id, role.title, department.name AS department, role.salary FROM department JOIN role ON role.department_id= department.id;`, (err, results) => {
           if (err) {
             throw err
           };

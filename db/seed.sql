@@ -10,5 +10,6 @@ INSERT INTO role(title, salary, department_id) VALUES
 ('Engineer', '120000', 3);
 
 INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES
-('Feliclare', 'De Jesus', 1, NULL),('Roger', 'Dodger', 2, 1),
+('Feliclare', 'De Jesus', 1, NULL),
+('Roger', 'Dodger', 2, 1),
 ('Yuri', 'The Dog', 3, 2);

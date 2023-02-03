@@ -13,7 +13,7 @@ CREATE TABLE role (
   title VARCHAR(30),
   salary DECIMAL,
   department_id INT,
-  Foreign Key (department_id) REFERENCES department(id) ON DELETE SET NULL
+  Foreign Key (department_id) REFERENCES department(id)
 );
 
 CREATE TABLE employee (
@@ -23,5 +23,5 @@ CREATE TABLE employee (
   role_id INT,
   manager_id INT,
   Foreign Key (role_id) REFERENCES role(id),
-  Foreign Key (manager_id) REFERENCES employee(id)
+  Foreign Key (manager_id) REFERENCES id
 );
