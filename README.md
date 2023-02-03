@@ -3,6 +3,8 @@
 ## Description
 This assignment focuses on the use of SQL, specifically MySQL, to create a database of employees for a given company. This application also allows user inputs because of the inquirer npm package. 
 
+I tried to put the departments, roles, and employees into an array that could be used when updating information, but I could not get it to work. I decided to use SQL to just update the employee information based on input versus choices.
+
 Here is a video walkthrough on how to use this application:
 
 

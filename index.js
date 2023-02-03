@@ -58,6 +58,7 @@ function addRole() {
         throw err 
       }
       console.log(`Added ${response.role} to database.`)
+      roles.push(role)
       menu();
     })
   })
@@ -92,6 +93,7 @@ function addEmployee() {
         throw err 
       }
       console.log(`Added ${response.firstName} ${response.lastName} to database.`)
+      employees.push(firstName)
       menu();
     })
   })
@@ -99,7 +101,26 @@ function addEmployee() {
 
 //function to update an employee's role
 function updateEmpRole() {
-  
+  inquirer.prompt ([
+    {
+      type: 'input',
+      name: 'empId',
+      message: "Enter the employee's ID number.",
+    },
+    {
+      type: 'input',
+      name: 'newRole',
+      message: "Enter the new role ID.",
+    },
+  ]).then((response) => {
+    db.query(`UPDATE employee SET role_id=? WHERE id=?`, [response.newRole, response.empId], (err, results) => {
+      if (err) {
+        throw err 
+      }
+      console.log(`Employee role has been updated!`)
+      menu();
+    })
+  })
 };
 
 //function for the main menu
