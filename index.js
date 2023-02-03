@@ -1,6 +1,7 @@
 //required packages
 const inquirer= require('inquirer');
 const mysql= require('mysql2');
+const consoleTable= require('console.table')
 
 //connect to mysql2
 const db= mysql.createConnection (
@@ -131,7 +132,7 @@ function menu() {
         });
         break;
         case 'View all employees':
-          db.query(`SELECT employee.role_id, employee.first_name, employee.last_name, role.title, role.department_id, role.salary, employee.manager_id AS manager FROM role JOIN employee ON employee.role_id= role.id;`, (err, results) => {
+          db.query(`SELECT employee.role_id, employee.first_name, employee.last_name, role.title, department.name, role.salary, employee.manager_id AS manager FROM department JOIN role ON role.department_id= department.id JOIN employee ON employee.role_id= role.id;`, (err, results) => {
             if (err) {
               throw err
             };

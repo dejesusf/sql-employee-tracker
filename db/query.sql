@@ -11,7 +11,9 @@ JOIN role
 ON role.department_id= department.id;
 
 -- view all employees (role id, first_name, last_name, title, salary, and manager --
-SELECT employee.role_id, employee.first_name, employee.last_name, role.title, role.department_id, role.salary, employee.manager_id AS manager
-FROM role
+SELECT employee.role_id, employee.first_name, employee.last_name, role.title, department.name, role.salary, employee.manager_id AS manager
+FROM department
+JOIN role
+ON role.department_id= department.id
 JOIN employee
 ON employee.role_id= role.id;
